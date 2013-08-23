@@ -16,6 +16,7 @@
             android:layout_height="wrap_content"
             android:minHeight="450dp"
             android:longClickable="false">
+
     <EditText android:id="@+id/txtText"
               android:layout_width="fill_parent"
               android:layout_height="wrap_content"
@@ -23,7 +24,7 @@
               android:layout_margin="10dip"
               android:layout_below="@+id/determinant_spinner"
               android:layout_alignParentLeft="true"
-              android:text="laceration"/>
+              android:text="@string/injury_default"/>
 
     <Button android:id="@+id/btnSpeak"
             android:layout_width="fill_parent"
@@ -31,7 +32,9 @@
             android:text="@string/btn_text"
             android:layout_margin="10dip"
             android:layout_alignParentBottom="true"
-            android:layout_alignRight="@+id/txtText"/>
+            android:layout_alignRight="@+id/txtText">
+        <requestFocus />
+    </Button>
 
     <Spinner
             android:layout_width="wrap_content"
@@ -60,7 +63,7 @@
             android:hint="@string/loc_hint"
             android:layout_alignParentRight="true"
             android:layout_alignParentLeft="true"
-            android:text="The RPI Greene Building"/>
+            android:text="@string/location_default"/>
 
     <EditText
             android:layout_width="wrap_content"
@@ -73,7 +76,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
             android:hint="@string/cross_hint"
-            android:text="Sage Avenue and 15th Street"/>
+            android:text="@string/cross_default"/>
 
     <EditText
             android:layout_width="wrap_content"
@@ -84,7 +87,7 @@
             android:hint="@string/dispatcher_hint"
             android:layout_below="@+id/addlText"
             android:layout_alignLeft="@+id/btnSpeak"
-            android:text="25"/>
+            android:text="@string/dispatcher_default"/>
 
     <EditText
             android:layout_width="wrap_content"
@@ -96,7 +99,7 @@
             android:layout_below="@+id/crossText"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
-            android:text="Scene is Secure"/>
+            android:text="@string/additional_default"/>
     </RelativeLayout>
     </ScrollView>
 
