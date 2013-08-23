@@ -1,0 +1,103 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity">
+
+    <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+    <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="450dp"
+            android:longClickable="false">
+    <EditText android:id="@+id/txtText"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:hint="@string/injury_hint"
+              android:layout_margin="10dip"
+              android:layout_below="@+id/determinant_spinner"
+              android:layout_alignParentLeft="true"
+              android:text="laceration"/>
+
+    <Button android:id="@+id/btnSpeak"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_text"
+            android:layout_margin="10dip"
+            android:layout_alignParentBottom="true"
+            android:layout_alignRight="@+id/txtText"/>
+
+    <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/determinant_spinner"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentLeft="true"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/det_string"
+            android:id="@+id/textView"
+            android:layout_alignBottom="@+id/determinant_spinner"
+            android:layout_alignRight="@+id/btnSpeak"/>
+
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:ems="10"
+            android:id="@+id/locText"
+            android:layout_below="@+id/txtText"
+            android:hint="@string/loc_hint"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentLeft="true"
+            android:text="The RPI Greene Building"/>
+
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:ems="10"
+            android:id="@+id/crossText"
+            android:layout_below="@+id/locText"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:hint="@string/cross_hint"
+            android:text="Sage Avenue and 15th Street"/>
+
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/numText"
+            android:hint="@string/dispatcher_hint"
+            android:layout_below="@+id/addlText"
+            android:layout_alignLeft="@+id/btnSpeak"
+            android:text="25"/>
+
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:ems="10"
+            android:id="@+id/addlText"
+            android:hint="@string/additional_hint"
+            android:layout_below="@+id/crossText"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:text="Scene is Secure"/>
+    </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

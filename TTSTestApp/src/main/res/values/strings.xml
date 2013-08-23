@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">RPIA Tones</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="det_string">Determinant</string>
+    <string name="injury_hint">Injury Type</string>
+    <string name="btn_text">Speak Out</string>
+    <string name="loc_hint">Location</string>
+    <string name="cross_hint">Cross Streets</string>
+    <string name="dispatcher_hint">Dispatcher #</string>
+    <string name="additional_hint">Additional info (optional)</string>
+
+    <string-array name="determinants_array">
+        <item>Alpha</item>
+        <item>Bravo</item>
+        <item>Charlie</item>
+        <item>Delta</item>
+        <item>Echo</item>
+    </string-array>
+
+</resources>
