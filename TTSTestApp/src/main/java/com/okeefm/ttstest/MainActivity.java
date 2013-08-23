@@ -235,7 +235,6 @@ public class MainActivity extends Activity implements
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
                 disp1.start();
-                mp_beeps.reset();
             }
         });
         disp1.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
@@ -248,7 +247,6 @@ public class MainActivity extends Activity implements
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
                 disp2.start();
-                mp_tone1.reset();
             }
         });
         disp2.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
@@ -261,7 +259,6 @@ public class MainActivity extends Activity implements
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
                 disp3.start();
-                mp_tone2.reset();
             }
         });
         disp3.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
