@@ -6,7 +6,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="det_string">Determinant</string>
     <string name="injury_hint">Injury Type</string>
-    <string name="btn_text">Speak Out</string>
+    <string name="btn_text">Dispatch</string>
     <string name="loc_hint">Location</string>
     <string name="cross_hint">Cross Streets</string>
     <string name="dispatcher_hint">Dispatcher #</string>
