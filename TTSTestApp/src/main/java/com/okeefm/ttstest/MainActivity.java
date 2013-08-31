@@ -21,6 +21,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -28,6 +29,8 @@ import android.widget.Toast;
 public class MainActivity extends Activity implements
         TextToSpeech.OnInitListener {
     /** Called when the activity is first created. */
+
+    public static final String PREFS_NAME = "TTSPrefs";
 
     private TextToSpeech tts;
     private Button btnSpeak;
@@ -41,6 +44,7 @@ public class MainActivity extends Activity implements
     private MediaPlayer mp_beeps;
     private MediaPlayer mp_tone1;
     private MediaPlayer mp_tone2;
+    private CheckBox simCheck;
 
 
     @Override
@@ -73,13 +77,12 @@ public class MainActivity extends Activity implements
             });
 
         btnSpeak = (Button) findViewById(R.id.btnSpeak);
-
         txtText = (EditText) findViewById(R.id.txtText);
         locText = (EditText) findViewById(R.id.locText);
         crossText = (EditText) findViewById(R.id.crossText);
         addlText = (EditText) findViewById(R.id.addlText);
         numText = (EditText) findViewById(R.id.numText);
-
+        simCheck = (CheckBox) findViewById(R.id.simCheck);
 
         mp_beeps = MediaPlayer.create(getApplicationContext(), R.raw.tone_beeps_silence);
         mp_tone1 = MediaPlayer.create(getApplicationContext(), R.raw.tone_only);
@@ -98,6 +101,43 @@ public class MainActivity extends Activity implements
             }
 
         });
+
+        restoreValues(savedInstanceState);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        savedInstanceState.putString("det_string", det);
+        savedInstanceState.putInt("det", detSpinner.getSelectedItemPosition());
+        savedInstanceState.putCharSequence("injury", txtText.getText().toString());
+        savedInstanceState.putCharSequence("location", locText.getText().toString());
+        savedInstanceState.putCharSequence("crosses", crossText.getText().toString());
+        savedInstanceState.putCharSequence("additional", addlText.getText().toString());
+        savedInstanceState.putCharSequence("dispatcher", numText.getText().toString());
+        savedInstanceState.putBoolean("simulation", simCheck.isChecked());
+
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        // Always call the superclass so it can restore the view hierarchy
+        super.onRestoreInstanceState(savedInstanceState);
+
+        restoreValues(savedInstanceState);
+    }
+
+    public void restoreValues(Bundle savedInstanceState) {
+        if (savedInstanceState != null && !savedInstanceState.isEmpty()) {
+            det = savedInstanceState.getString("det_string");
+            detSpinner.setSelection(savedInstanceState.getInt("det"));
+            txtText.setText(savedInstanceState.getCharSequence("injury"));
+            locText.setText(savedInstanceState.getCharSequence("location"));
+            crossText.setText(savedInstanceState.getCharSequence("crosses"));
+            addlText.setText(savedInstanceState.getCharSequence("additional"));
+            numText.setText(savedInstanceState.getCharSequence("dispatcher"));
+            simCheck.setChecked(savedInstanceState.getBoolean("simulation"));
+        }
     }
 
     @Override
@@ -151,11 +191,17 @@ public class MainActivity extends Activity implements
         final String addtxt = addlText.getText().toString();
         final String crossTxt = crossText.getText().toString();
         final String numTxt = numText.getText().toString();
+
+        String newDet = det;
+        if (simCheck.isChecked()) {
+            newDet = "simulated " + det;
+        }
         //Put together the 3 dispatch sentences
-        final String firstDispatchText = "Stand by RPI Ambulance for a " + det + " determinant " + txt + ". " + locTxt;
-        final String secondDispatchText = "RPI Ambulance, a " + det + " determinant " + txt + " " + locTxt + ", " + addtxt;
+        final String firstDispatchText = "Stand by RPI Ambulance for a " + newDet + " determinant " + txt + ". " + locTxt;
+        //final String secondDispatchText = "for the RPI Ambulance, a " + newDet + " determinant " + txt + " " + locTxt + ", " + addtxt;
         final String timeStamp = new SimpleDateFormat("HHmm").format(Calendar.getInstance().getTime());
-        final String lastDispatchText = "Repeating for the RPI Ambulance, a " + det + " determinant " + txt + " " + locTxt + ", " + addtxt + ", crosses of " + crossTxt +", time is " + timeStamp + ", dispatcher " + numTxt;
+        final String lastDispatchText = "Repeating for the RPI Ambulance, a " + newDet + " determinant " + txt + " " + locTxt + ", " + addtxt + ", crosses of " + crossTxt +", time is " + timeStamp + ", dispatcher " + numTxt;
+
 
         //Figure out the external storage path on this device
         String exStoragePath = Environment.getExternalStorageDirectory().getAbsolutePath();
@@ -169,15 +215,15 @@ public class MainActivity extends Activity implements
         Log.d("TTS", "directory "+appTmpPath+" is created : "+success);
         //Make up filenames for the 3 dispatches
         String dispatch1name = "dispatch1.wav";
-        String dispatch2name = "dispatch2.wav";
+        //String dispatch2name = "dispatch2.wav";
         String dispatch3name = "dispatch3.wav";
         final String dispatchFile1 = appTmpPath.getAbsolutePath() + File.separator + dispatch1name;
-        final String dispatchFile2 = appTmpPath.getAbsolutePath() + File.separator + dispatch2name;
+        //final String dispatchFile2 = appTmpPath.getAbsolutePath() + File.separator + dispatch2name;
         final String dispatchFile3 = appTmpPath.getAbsolutePath() + File.separator + dispatch3name;
 
         //initialize the 3 media players we'll be using
         final MediaPlayer disp1 = new MediaPlayer();
-        final MediaPlayer disp2 = new MediaPlayer();
+        //final MediaPlayer disp2 = new MediaPlayer();
         final MediaPlayer disp3 = new MediaPlayer();
 
         //Set up a completion listener for the TTS synthesis
@@ -195,10 +241,7 @@ public class MainActivity extends Activity implements
                 if (Integer.parseInt(s) == 1) {
                     disp1.setDataSource(dispatchFile1);
                     disp1.prepareAsync();
-                } else if (Integer.parseInt(s) == 2) {
-                    disp2.setDataSource(dispatchFile2);
-                    disp2.prepareAsync();
-                }else if (Integer.parseInt(s) == 3) {
+                } else if (Integer.parseInt(s) == 3) {
                     disp3.setDataSource(dispatchFile3);
                     disp3.prepareAsync();
                 }
@@ -222,10 +265,6 @@ public class MainActivity extends Activity implements
         hash1.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "1");
         tts.synthesizeToFile(firstDispatchText, hash1, dispatchFile1);
 
-        HashMap<String, String> hash2 = new HashMap();
-        hash2.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "2");
-        tts.synthesizeToFile(secondDispatchText, hash2, dispatchFile2);
-
         HashMap<String, String> hash3 = new HashMap();
         hash3.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "3");
         tts.synthesizeToFile(lastDispatchText, hash3, dispatchFile3);
@@ -246,18 +285,6 @@ public class MainActivity extends Activity implements
         mp_tone1.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
-                disp2.start();
-            }
-        });
-        disp2.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mediaPlayer) {
-                mp_tone2.start();
-            }
-        });
-        mp_tone2.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mediaPlayer) {
                 disp3.start();
             }
         });
@@ -265,7 +292,6 @@ public class MainActivity extends Activity implements
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
                 disp1.release();
-                disp2.release();
                 disp3.release();
             }
         });
@@ -280,17 +306,7 @@ public class MainActivity extends Activity implements
             @Override
             public void onPrepared(MediaPlayer mediaPlayer) {
                 prepared[0] = true;
-                if (prepared[1] && prepared[2]) {
-                    mp_beeps.start();
-                    toast.cancel();
-                }
-            }
-        });
-        disp2.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mediaPlayer) {
-                prepared[1] = true;
-                if (prepared[0] && prepared[2]) {
+                if (prepared[0] && prepared[1]) {
                     mp_beeps.start();
                     toast.cancel();
                 }
@@ -299,7 +315,7 @@ public class MainActivity extends Activity implements
         disp3.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mediaPlayer) {
-                prepared[2] = true;
+                prepared[1] = true;
                 if (prepared[0] && prepared[1]) {
                     mp_beeps.start();
                     toast.cancel();
