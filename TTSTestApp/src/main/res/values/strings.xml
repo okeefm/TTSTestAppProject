@@ -11,11 +11,13 @@
     <string name="cross_hint">Cross Streets</string>
     <string name="dispatcher_hint">Dispatcher #</string>
     <string name="additional_hint">Additional info (optional)</string>
-    <string name="injury_default">laceration</string>
-    <string name="location_default">The RPI Greene Building</string>
-    <string name="cross_default">Sage Avenue and 15th Street</string>
-    <string name="additional_default">Scene is Secure</string>
-    <string name="dispatcher_default">25</string>
+    <string name="injury_default"></string>
+    <string name="location_default"></string>
+    <string name="cross_default"></string>
+    <string name="additional_default"></string>
+    <string name="dispatcher_default"></string>
+    <string name="simulation_text">Dispatch as simulation?</string>
+    <string name="futureTriggerText">Trigger in future?</string>
 
     <string-array name="determinants_array">
         <item>Alpha</item>
