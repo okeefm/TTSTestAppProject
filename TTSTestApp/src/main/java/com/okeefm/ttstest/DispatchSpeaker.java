@@ -29,12 +29,15 @@ public class DispatchSpeaker {
     //Use this boolean as the world's hackiest semaphore
     private final Boolean prepared[] = new Boolean[2];
 
-    public DispatchSpeaker(String firstDispatch, String secondDispatch, TextToSpeech tts) {
+    public DispatchSpeaker(String firstDispatch, String secondDispatch, TextToSpeech tts, Context context) {
         firstDispatchText = firstDispatch;
         secondDispatchText = secondDispatch;
         this.context = context;
 
         this.tts = tts;
+
+        mp_beeps = MediaPlayer.create(context, R.raw.tone_beeps_silence);
+        mp_tone1 = MediaPlayer.create(context, R.raw.tone_only);
 
         generateDispatchWavs();
     }

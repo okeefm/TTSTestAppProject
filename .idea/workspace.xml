@@ -24,10 +24,7 @@
   <component name="ChangeListManager">
     <list default="true" id="11904620-29ab-40b1-a614-3d76ce168075" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TTSTestApp/src/main/java/com/okeefm/ttstest/DispatchSpeaker.java" afterPath="$PROJECT_DIR$/TTSTestApp/src/main/java/com/okeefm/ttstest/DispatchSpeaker.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TTSTestApp/TTSTestApp.iml" afterPath="$PROJECT_DIR$/TTSTestApp/TTSTestApp.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TTSTestApp/src/main/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/TTSTestApp/src/main/res/layout/activity_main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TTSTestApp/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/TTSTestApp/src/main/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TTSTestApp/src/main/java/com/okeefm/ttstest/MainActivity.java" afterPath="$PROJECT_DIR$/TTSTestApp/src/main/java/com/okeefm/ttstest/MainActivity.java" />
     </list>
     <ignored path="TTSTestApp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -103,10 +100,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TTSTestApp/src/main/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="45" selection-start="516" selection-end="516" vertical-scroll-proportion="0.36363637" vertical-offset="51" max-vertical-offset="612">
+            <state line="15" column="45" selection-start="516" selection-end="516" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="612">
               <folding />
             </state>
           </provider>
@@ -124,30 +121,30 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TTSTestApp/src/main/java/com/okeefm/ttstest/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="261" column="0" selection-start="10181" selection-end="10181" vertical-scroll-proportion="0.0" vertical-offset="3723" max-vertical-offset="4760">
+            <state line="196" column="9" selection-start="7622" selection-end="7622" vertical-scroll-proportion="0.0" vertical-offset="2410" max-vertical-offset="2975">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DispatchSpeaker.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="DispatchSpeaker.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/TTSTestApp/src/main/java/com/okeefm/ttstest/DispatchSpeaker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="154" column="19" selection-start="5391" selection-end="5391" vertical-scroll-proportion="0.0" vertical-offset="2193" max-vertical-offset="2754">
+            <state line="34" column="31" selection-start="1106" selection-end="1106" vertical-scroll-proportion="-2.969697" vertical-offset="2244" max-vertical-offset="2805">
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3693#3874#0" expanded="true" />
-                <element signature="e#3863#3864#0" expanded="true" />
-                <element signature="e#3915#4099#0" expanded="true" />
-                <element signature="e#4088#4089#0" expanded="true" />
-                <element signature="e#4143#4324#0" expanded="true" />
-                <element signature="e#4313#4314#0" expanded="true" />
-                <element signature="e#4763#4945#0" expanded="true" />
-                <element signature="e#4934#4935#0" expanded="true" />
-                <element signature="e#4984#5166#0" expanded="true" />
-                <element signature="e#5155#5156#0" expanded="true" />
-                <element signature="e#5221#5381#0" expanded="true" />
-                <element signature="e#5370#5371#0" expanded="true" />
+                <element signature="e#3850#4031#0" expanded="true" />
+                <element signature="e#4020#4021#0" expanded="true" />
+                <element signature="e#4072#4256#0" expanded="true" />
+                <element signature="e#4245#4246#0" expanded="true" />
+                <element signature="e#4300#4481#0" expanded="true" />
+                <element signature="e#4470#4471#0" expanded="true" />
+                <element signature="e#4920#5102#0" expanded="true" />
+                <element signature="e#5091#5092#0" expanded="true" />
+                <element signature="e#5141#5323#0" expanded="true" />
+                <element signature="e#5312#5313#0" expanded="true" />
+                <element signature="e#5378#5538#0" expanded="true" />
+                <element signature="e#5527#5528#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -216,8 +213,8 @@
         <option value="$PROJECT_DIR$/TTSTestApp/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/TTSTestApp/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/TTSTestApp/src/main/res/layout/activity_main.xml" />
-        <option value="$PROJECT_DIR$/TTSTestApp/src/main/java/com/okeefm/ttstest/MainActivity.java" />
         <option value="$PROJECT_DIR$/TTSTestApp/src/main/java/com/okeefm/ttstest/DispatchSpeaker.java" />
+        <option value="$PROJECT_DIR$/TTSTestApp/src/main/java/com/okeefm/ttstest/MainActivity.java" />
       </list>
     </option>
   </component>
@@ -599,6 +596,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/TTSTestApp/src/main/java/com/okeefm/ttstest/UtteranceProgressListenerImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="0" selection-start="1077" selection-end="1077" vertical-scroll-proportion="0.6060606" vertical-offset="204" max-vertical-offset="765">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TTSTestApp/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="45" selection-start="516" selection-end="516" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="612">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/TTSTestApp/src/main/res/layout/activity_main.xml">
       <provider selected="true" editor-type-id="android-designer">
         <state />
@@ -609,45 +620,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TTSTestApp/src/main/java/com/okeefm/ttstest/UtteranceProgressListenerImpl.java">
+    <entry file="file://$PROJECT_DIR$/TTSTestApp/src/main/java/com/okeefm/ttstest/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="0" selection-start="1077" selection-end="1077" vertical-scroll-proportion="0.6060606" vertical-offset="204" max-vertical-offset="765">
+        <state line="196" column="9" selection-start="7622" selection-end="7622" vertical-scroll-proportion="0.0" vertical-offset="2410" max-vertical-offset="2975">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/TTSTestApp/src/main/java/com/okeefm/ttstest/DispatchSpeaker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="154" column="19" selection-start="5391" selection-end="5391" vertical-scroll-proportion="0.0" vertical-offset="2193" max-vertical-offset="2754">
+        <state line="34" column="31" selection-start="1106" selection-end="1106" vertical-scroll-proportion="-2.969697" vertical-offset="2244" max-vertical-offset="2805">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3693#3874#0" expanded="true" />
-            <element signature="e#3863#3864#0" expanded="true" />
-            <element signature="e#3915#4099#0" expanded="true" />
-            <element signature="e#4088#4089#0" expanded="true" />
-            <element signature="e#4143#4324#0" expanded="true" />
-            <element signature="e#4313#4314#0" expanded="true" />
-            <element signature="e#4763#4945#0" expanded="true" />
-            <element signature="e#4934#4935#0" expanded="true" />
-            <element signature="e#4984#5166#0" expanded="true" />
-            <element signature="e#5155#5156#0" expanded="true" />
-            <element signature="e#5221#5381#0" expanded="true" />
-            <element signature="e#5370#5371#0" expanded="true" />
+            <element signature="e#3850#4031#0" expanded="true" />
+            <element signature="e#4020#4021#0" expanded="true" />
+            <element signature="e#4072#4256#0" expanded="true" />
+            <element signature="e#4245#4246#0" expanded="true" />
+            <element signature="e#4300#4481#0" expanded="true" />
+            <element signature="e#4470#4471#0" expanded="true" />
+            <element signature="e#4920#5102#0" expanded="true" />
+            <element signature="e#5091#5092#0" expanded="true" />
+            <element signature="e#5141#5323#0" expanded="true" />
+            <element signature="e#5312#5313#0" expanded="true" />
+            <element signature="e#5378#5538#0" expanded="true" />
+            <element signature="e#5527#5528#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TTSTestApp/src/main/java/com/okeefm/ttstest/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="261" column="0" selection-start="10181" selection-end="10181" vertical-scroll-proportion="0.0" vertical-offset="3723" max-vertical-offset="4760">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TTSTestApp/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="45" selection-start="516" selection-end="516" vertical-scroll-proportion="0.36363637" vertical-offset="51" max-vertical-offset="612">
-          <folding />
         </state>
       </provider>
     </entry>
