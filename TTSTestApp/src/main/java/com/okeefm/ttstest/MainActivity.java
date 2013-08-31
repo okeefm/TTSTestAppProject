@@ -41,10 +41,8 @@ public class MainActivity extends Activity implements
     private EditText numText;
     private Spinner detSpinner;
     private String det = null;
-    private MediaPlayer mp_beeps;
-    private MediaPlayer mp_tone1;
-    private MediaPlayer mp_tone2;
     private CheckBox simCheck;
+    private CheckBox futureCheck;
 
 
     @Override
@@ -83,10 +81,7 @@ public class MainActivity extends Activity implements
         addlText = (EditText) findViewById(R.id.addlText);
         numText = (EditText) findViewById(R.id.numText);
         simCheck = (CheckBox) findViewById(R.id.simCheck);
-
-        mp_beeps = MediaPlayer.create(getApplicationContext(), R.raw.tone_beeps_silence);
-        mp_tone1 = MediaPlayer.create(getApplicationContext(), R.raw.tone_only);
-        mp_tone2 = MediaPlayer.create(getApplicationContext(), R.raw.tone_only);
+        futureCheck = (CheckBox) findViewById(R.id.futureTrigger);
 
         // button on click event
         btnSpeak.setOnClickListener(new View.OnClickListener() {
@@ -148,13 +143,6 @@ public class MainActivity extends Activity implements
             tts.shutdown();
         }
 
-        mp_beeps.release();
-        mp_tone1.release();
-        mp_tone2.release();
-        mp_beeps = null;
-        mp_tone1 = null;
-        mp_tone2 = null;
-
         super.onDestroy();
     }
 
@@ -202,127 +190,10 @@ public class MainActivity extends Activity implements
         final String timeStamp = new SimpleDateFormat("HHmm").format(Calendar.getInstance().getTime());
         final String lastDispatchText = "Repeating for the RPI Ambulance, a " + newDet + " determinant " + txt + " " + locTxt + ", " + addtxt + ", crosses of " + crossTxt +", time is " + timeStamp + ", dispatcher " + numTxt;
 
+        DispatchSpeaker ds = new DispatchSpeaker(firstDispatchText, lastDispatchText, tts, getApplicationContext());
 
-        //Figure out the external storage path on this device
-        String exStoragePath = Environment.getExternalStorageDirectory().getAbsolutePath();
-        Log.d("TTS", "exStoragePath : "+exStoragePath);
-        File appTmpPath = new File(exStoragePath + "/sounds/");
-        //Create (or use, if already created) the path to the sounds directory in external storage
-        boolean success = true;
-        if (!appTmpPath.exists()) {
-            success = appTmpPath.mkdirs();
+        if (!futureCheck.isChecked()) {
+            ds.play();
         }
-        Log.d("TTS", "directory "+appTmpPath+" is created : "+success);
-        //Make up filenames for the 3 dispatches
-        String dispatch1name = "dispatch1.wav";
-        //String dispatch2name = "dispatch2.wav";
-        String dispatch3name = "dispatch3.wav";
-        final String dispatchFile1 = appTmpPath.getAbsolutePath() + File.separator + dispatch1name;
-        //final String dispatchFile2 = appTmpPath.getAbsolutePath() + File.separator + dispatch2name;
-        final String dispatchFile3 = appTmpPath.getAbsolutePath() + File.separator + dispatch3name;
-
-        //initialize the 3 media players we'll be using
-        final MediaPlayer disp1 = new MediaPlayer();
-        //final MediaPlayer disp2 = new MediaPlayer();
-        final MediaPlayer disp3 = new MediaPlayer();
-
-        //Set up a completion listener for the TTS synthesis
-        tts.setOnUtteranceProgressListener(new UtteranceProgressListener() {
-            @Override
-            public void onStart(String s) {
-
-            }
-
-            @Override
-            public void onDone(String s) {
-                Log.d("TTS", "String passed to onDone: " + s);
-
-                try {
-                if (Integer.parseInt(s) == 1) {
-                    disp1.setDataSource(dispatchFile1);
-                    disp1.prepareAsync();
-                } else if (Integer.parseInt(s) == 3) {
-                    disp3.setDataSource(dispatchFile3);
-                    disp3.prepareAsync();
-                }
-                } catch (IOException e) {
-                    Log.e("TTS", e.toString());
-                }
-
-            }
-
-            @Override
-            public void onError(String s) {
-
-            }
-        });
-
-        final Toast toast = Toast.makeText(getApplicationContext(), "Synthesizing speech, please wait", Toast.LENGTH_LONG);
-        toast.show();
-
-        //Synthesize the 3 speech files
-        HashMap<String, String> hash1 = new HashMap();
-        hash1.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "1");
-        tts.synthesizeToFile(firstDispatchText, hash1, dispatchFile1);
-
-        HashMap<String, String> hash3 = new HashMap();
-        hash3.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "3");
-        tts.synthesizeToFile(lastDispatchText, hash3, dispatchFile3);
-
-        //Set OnCompletionListeners for all MediaPlayers, so things play in the right order
-        mp_beeps.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mediaPlayer) {
-                disp1.start();
-            }
-        });
-        disp1.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mediaPlayer) {
-                mp_tone1.start();
-            }
-        });
-        mp_tone1.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mediaPlayer) {
-                disp3.start();
-            }
-        });
-        disp3.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mediaPlayer) {
-                disp1.release();
-                disp3.release();
-            }
-        });
-
-        //Use this boolean as the world's hackiest semaphore
-        final Boolean prepared[] = new Boolean[3];
-        for (int i = 0; i < 3; i++) {
-            prepared[i] = false;
-        }
-        //When a MediaPlayer is prepared, set its prepared variable to true, and check if the others are done too. If they are, start playing
-        disp1.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mediaPlayer) {
-                prepared[0] = true;
-                if (prepared[0] && prepared[1]) {
-                    mp_beeps.start();
-                    toast.cancel();
-                }
-            }
-        });
-        disp3.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mediaPlayer) {
-                prepared[1] = true;
-                if (prepared[0] && prepared[1]) {
-                    mp_beeps.start();
-                    toast.cancel();
-                }
-            }
-        });
-
-
     }
 }
