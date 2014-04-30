@@ -25,7 +25,9 @@
               android:layout_margin="10dip"
               android:layout_below="@+id/determinant_spinner"
               android:layout_alignParentLeft="true"
-              android:text="@string/injury_default"/>
+              android:text="@string/injury_default"
+              android:singleLine="true"
+              android:nextFocusDown="@+id/locText"/>
 
         <Spinner
             android:layout_width="wrap_content"
@@ -45,7 +47,8 @@
             android:hint="@string/loc_hint"
             android:layout_alignParentRight="true"
             android:layout_alignParentLeft="true"
-            android:text="@string/location_default"/>
+            android:text="@string/location_default"
+            android:nextFocusDown="@+id/crossText"/>
 
     <EditText
             android:layout_width="wrap_content"
@@ -58,7 +61,8 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
             android:hint="@string/cross_hint"
-            android:text="@string/cross_default"/>
+            android:text="@string/cross_default"
+            android:nextFocusDown="@+id/addlText"/>
 
     <EditText
             android:layout_width="wrap_content"
@@ -69,7 +73,9 @@
             android:hint="@string/dispatcher_hint"
             android:layout_below="@+id/addlText"
             android:layout_alignLeft="@+id/btnSpeak"
-            android:text="@string/dispatcher_default"/>
+            android:text="@string/dispatcher_default"
+            android:singleLine="true"
+            android:nextFocusDown="@+id/btnSpeak"/>
 
     <EditText
             android:layout_width="wrap_content"
@@ -81,7 +87,8 @@
             android:layout_below="@+id/crossText"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
-            android:text="@string/additional_default"/>
+            android:text="@string/additional_default"
+            android:nextFocusDown="@+id/numText"/>
 
         <CheckBox
                 android:layout_width="wrap_content"
@@ -89,44 +96,38 @@
                 android:text="@string/simulation_text"
                 android:id="@+id/simCheck"
                 android:checked="true"
-                android:layout_alignTop="@+id/determinant_spinner"
-                android:layout_alignParentRight="true"/>
-
-        <TimePicker
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/triggerTime"
                 android:layout_below="@+id/numText"
                 android:layout_alignParentLeft="true"
-                android:measureAllChildren="false"/>
+                android:layout_marginTop="13dp"/>
 
         <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/futureTriggerText"
                 android:id="@+id/futureTrigger"
-                android:layout_alignBottom="@+id/triggerTime"
-                android:layout_toRightOf="@+id/triggerTime"/>
+                android:layout_below="@+id/simCheck"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="11dp"/>
+
+        <Button android:id="@+id/btnSpeak"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_text"
+                android:layout_margin="10dip"
+                android:layout_below="@+id/futureTrigger"
+                android:layout_alignParentLeft="true">
+            <requestFocus />
+        </Button>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/det_string"
+                android:id="@+id/textView"
+                android:layout_above="@+id/txtText"
+                android:layout_alignRight="@+id/simCheck"/>
     </RelativeLayout>
     </ScrollView>
-
-    <Button android:id="@+id/btnSpeak"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/btn_text"
-            android:layout_margin="10dip"
-            android:layout_alignBottom="@+id/scrollView"
-            android:layout_centerHorizontal="true">
-        <requestFocus />
-    </Button>
-
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/det_string"
-            android:id="@+id/textView"
-            android:layout_alignTop="@+id/scrollView"
-            android:layout_alignLeft="@+id/btnSpeak"/>
 
 </RelativeLayout>
